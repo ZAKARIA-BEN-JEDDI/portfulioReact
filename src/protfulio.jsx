@@ -281,6 +281,10 @@ import { ChevronRight, Menu, X } from 'lucide-react'
 //   )
 // }
 
+
+
+
+
 export default function FuturisticHomepage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [activeSection, setActiveSection] = useState('home')
@@ -343,79 +347,21 @@ export default function FuturisticHomepage() {
       <div className="relative z-10">
         {/* Header */}
         <header className="fixed top-0 left-0 right-0 z-50 bg-black bg-opacity-50 backdrop-blur-md">
-          <nav className="container mx-auto px-4 py-4 flex justify-between items-center">
+          <div className="container mx-auto px-4 py-4 flex justify-center items-center">
             <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
               className="text-2xl font-bold"
             >
-              <span className="text-cyan-400">Zakaria</span>
-              <span className="text-fuchsia-400">Ben jeddi</span>
+              <span className="text-cyan-400">Nexus</span>
+              <span className="text-fuchsia-400">Tech</span>
             </motion.div>
-            <div className="hidden md:flex space-x-6">
-              {['Home', 'About', 'Services', 'Contact'].map((item) => (
-                <a
-                  key={item}
-                  href={`#${item.toLowerCase()}`}
-                  className={`hover:text-cyan-400 transition-colors ${
-                    activeSection === item.toLowerCase() ? 'text-cyan-400' : ''
-                  }`}
-                >
-                  {item}
-                </a>
-              ))}
-            </div>
-            {/* <Button
-              variant="ghost"
-              size="icon"
-              className="md:hidden"
-              onClick={() => setIsMenuOpen(true)}
-            >
-              <Menu className="h-6 w-6" />
-              <span className="sr-only">Open menu</span>
-            </Button> */}
-          </nav>
+          </div>
         </header>
 
-        {/* Mobile menu */}
-        <AnimatePresence>
-          {isMenuOpen && (
-            <motion.div
-              initial={{ opacity: 0, x: '100%' }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: '100%' }}
-              transition={{ type: 'tween', duration: 0.3 }}
-              className="fixed inset-y-0 right-0 z-50 w-full max-w-sm bg-black bg-opacity-90 backdrop-blur-lg shadow-lg"
-            >
-              <div className="flex justify-end p-4">
-                {/* <Button
-                  variant="ghost"
-                  size="icon"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  <X className="h-6 w-6" />
-                  <span className="sr-only">Close menu</span>
-                </Button> */}
-              </div>
-              <nav className="px-4 py-8">
-                {['Home', 'About', 'Services', 'Contact'].map((item) => (
-                  <a
-                    key={item}
-                    href={`#${item.toLowerCase()}`}
-                    className="block py-4 text-lg hover:text-cyan-400 transition-colors"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    {item}
-                  </a>
-                ))}
-              </nav>
-            </motion.div>
-          )}
-        </AnimatePresence>
-
         {/* Main content */}
-        <main>
+        <main className="pt-20 pb-24"> {/* Added padding to top and bottom to account for fixed header and nav */}
           {/* Hero section */}
           <section id="home" className="min-h-screen flex items-center justify-center">
             <div className="container mx-auto px-4">
@@ -440,7 +386,7 @@ export default function FuturisticHomepage() {
                     transition={{ duration: 0.8, delay: 0.2 }}
                     className="text-5xl md:text-7xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-fuchsia-400 to-blue-500"
                   >
-                    Welcome to Zakaria
+                    Welcome to the Future
                   </motion.h1>
                   <motion.p
                     initial={{ opacity: 0 }}
@@ -542,16 +488,25 @@ export default function FuturisticHomepage() {
           </section>
         </main>
 
-        {/* Footer */}
-        <footer className="bg-black bg-opacity-50 py-8">
-          <div className="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
-            <p className="text-gray-400 mb-4 md:mb-0">&copy; 2024 NexusTech. All rights reserved.</p>
-            <div className="flex space-x-6">
-              <a href="#" className="text-gray-400 hover:text-cyan-400 transition-colors">Privacy Policy</a>
-              <a href="#" className="text-gray-400 hover:text-cyan-400 transition-colors">Terms of Service</a>
-            </div>
+        {/* Navigation menu */}
+        <nav className="fixed bottom-0 left-0 right-0 z-50 bg-opacity-50 backdrop-blur-md py-4">
+          <div className="container mx-auto px-4">
+            <ul className="flex justify-center space-x-6">
+              {['Home', 'About', 'Services', 'Contact'].map((item) => (
+                <li key={item}>
+                  <a
+                    href={`#${item.toLowerCase()}`}
+                    className={`hover:text-cyan-400 transition-colors ${
+                      activeSection === item.toLowerCase() ? 'text-cyan-400' : 'text-white'
+                    }`}
+                  >
+                    {item}
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
-        </footer>
+        </nav>
       </div>
     </div>
   )
